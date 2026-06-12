@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Sikkerhetsdemo</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            background-color: #111;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 60px;
+            color: #ff3333;
+        }
+
+        #counter {
+            font-size: 50px;
+            color: #00ff99;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Nå kunne du vært hacket</h1>
+<p>Antall besøkende:</p>
+<div id="counter">0</div>
+
+<script>
+    fetch("/count")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("counter").innerText = data.count;
+        });
+
+    setInterval(() => {
+        fetch("/current")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("counter").innerText = data.count;
+            });
+    }, 2000);
+</script>
+
+</body>
+</html>
