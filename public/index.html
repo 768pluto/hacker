@@ -48,4 +48,66 @@
             font-size: 18px;
             color: #ccc;
         }
+    </style>
+</head>
+
+<body>
+
+    <h1>Nå kunne du vært hacket</h1>
+
+    <!-- BILDE -->
+    <img src="hacker.png" alt="Hacker bilde" class="image">
+
+    <p>Antall besøkende:</p>
+    <div id="counter">0</div>
+
+    <p id="device"></p>
+    <p id="time"></p>
+
+    <script>
+        // ===== TELLER =====
+        fetch("/count")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("counter").innerText = data.count;
+            });
+
+        setInterval(() => {
+            fetch("/current")
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("counter").innerText = data.count;
+                });
+        }, 2000);
+
+
+        // ===== DEVICE DETEKSJON =====
+        const ua = navigator.userAgent;
+        let device = "Ukjent enhet";
+
+        if (ua.includes("Windows")) device = "Windows PC";
+        else if (ua.includes("Mac")) device = "Mac";
+        else if (ua.includes("iPhone")) device = "iPhone";
+        else if (ua.includes("Android")) device = "Android";
+        else if (ua.includes("iPad")) device = "iPad";
+
+        document.getElementById("device").innerText =
+            "Din enhet: " + device;
+
+
+        // ===== TIDSPUNKT =====
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString("no-NO");
+            document.getElementById("time").innerText =
+                "Tidspunkt: " + timeString;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+    </script>
+
+</body>
+</html>
 
