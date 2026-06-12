@@ -48,6 +48,23 @@
             font-size: 18px;
             color: #ccc;
         }
+
+        .info {
+            max-width: 700px;
+            font-size: 20px;
+            color: #ddd;
+            line-height: 1.5;
+            margin-top: 30px;
+        }
+
+        a {
+            color: #00ff99;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -63,6 +80,16 @@
 
     <p id="device"></p>
     <p id="time"></p>
+
+    <!-- NY TEKST -->
+    <p class="info">
+        Vi anbefaler at du kommer til Canon Business Center VT sitt seminar 12. oktober.<br>
+        Da kan du lære mer om hvordan unngå å bli hacket.<br><br>
+        Link (trygg) til påmelding:<br>
+        <a href="https://www.xxxxxxx/cccc.com" target="_blank">
+            www.xxxxxxx/cccc.com
+        </a>
+    </p>
 
     <script>
         // ===== TELLER =====
@@ -80,8 +107,7 @@
                 });
         }, 2000);
 
-
-        // ===== OPERATIVSYSTEM (fikset rekkefølge) =====
+        // ===== OPERATIVSYSTEM =====
         const ua = navigator.userAgent;
         let device = "Ukjent enhet";
 
@@ -94,7 +120,6 @@
         document.getElementById("device").innerText =
             "Operativsystem: " + device;
 
-
         // ===== TIDSPUNKT =====
         function updateTime() {
             const now = new Date();
@@ -105,7 +130,6 @@
 
         updateTime();
         setInterval(updateTime, 1000);
-
     </script>
 
 </body>
