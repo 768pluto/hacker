@@ -81,18 +81,18 @@
         }, 2000);
 
 
-        // ===== DEVICE DETEKSJON =====
+        // ===== OPERATIVSYSTEM (fikset rekkefølge) =====
         const ua = navigator.userAgent;
         let device = "Ukjent enhet";
 
-        if (ua.includes("Windows")) device = "Windows PC";
-        else if (ua.includes("Mac")) device = "Mac";
-        else if (ua.includes("iPhone")) device = "iPhone";
-        else if (ua.includes("Android")) device = "Android";
-        else if (ua.includes("iPad")) device = "iPad";
+        if (/iPhone/.test(ua)) device = "iOS (iPhone)";
+        else if (/iPad/.test(ua)) device = "iOS (iPad)";
+        else if (/Android/.test(ua)) device = "Android";
+        else if (/Windows/.test(ua)) device = "Windows";
+        else if (/Macintosh/.test(ua)) device = "macOS";
 
         document.getElementById("device").innerText =
-            "Din enhet: " + device;
+            "Operativsystem: " + device;
 
 
         // ===== TIDSPUNKT =====
