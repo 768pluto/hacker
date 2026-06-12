@@ -12,7 +12,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             background-color: #111;
             color: #fff;
             text-align: center;
@@ -33,45 +33,19 @@
         }
 
         p {
-            font-size: 28px;
+            font-size: 22px;
+            margin: 5px;
         }
 
         #counter {
             font-size: 50px;
             font-weight: bold;
             color: #00ff99;
+            margin-bottom: 15px;
         }
-    </style>
-</head>
 
-<body>
+        #device, #time {
+            font-size: 18px;
+            color: #ccc;
+        }
 
-    <h1>Nå kunne du vært hacket</h1>
-
-    <!-- BILDE -->
-    <img src="hacker.png" alt="Hacker bilde" class="image">
-
-    <p>Antall "OFFER" i dag:</p>
-    <div id="counter">0</div>
-
-    <script>
-        // Øker teller ved nytt besøk
-        fetch("/count")
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById("counter").innerText = data.count;
-            });
-
-        // Oppdaterer teller hvert 2. sekund (uten å øke)
-        setInterval(() => {
-            fetch("/current")
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById("counter").innerText = data.count;
-                });
-        }, 2000);
-    </script>
-
-</body>
-</html>
-``
