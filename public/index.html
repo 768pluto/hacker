@@ -46,3 +46,32 @@
 
 <body>
 
+    <h1>Nå kunne du vært hacket</h1>
+
+    <!-- BILDE -->
+    <img src="hacker.png" alt="Hacker demo" class="image">
+
+    <p>Antall besøkende:</p>
+    <div id="counter">0</div>
+
+    <script>
+        // Øker teller ved nytt besøk
+        fetch("/count")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("counter").innerText = data.count;
+            });
+
+        // Oppdaterer teller hvert 2. sekund (uten å øke)
+        setInterval(() => {
+            fetch("/current")
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("counter").innerText = data.count;
+                });
+        }, 2000);
+    </script>
+
+</body>
+</html>
+``
