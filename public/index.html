@@ -15,15 +15,30 @@
             font-family: Arial;
             background-color: #111;
             color: #fff;
+            text-align: center;
         }
 
         h1 {
             font-size: 60px;
             color: #ff3333;
+            margin-bottom: 20px;
+        }
+
+        .image {
+            width: 300px;
+            max-width: 80%;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+        }
+
+        p {
+            font-size: 28px;
         }
 
         #counter {
             font-size: 50px;
+            font-weight: bold;
             color: #00ff99;
         }
     </style>
@@ -31,25 +46,3 @@
 
 <body>
 
-<h1>Nå kunne du vært hacket</h1>
-<p>Antall besøkende:</p>
-<div id="counter">0</div>
-
-<script>
-    fetch("/count")
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("counter").innerText = data.count;
-        });
-
-    setInterval(() => {
-        fetch("/current")
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById("counter").innerText = data.count;
-            });
-    }, 2000);
-</script>
-
-</body>
-</html>
